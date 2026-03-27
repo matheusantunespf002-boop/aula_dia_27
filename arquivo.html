@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação III - Material Didático</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+    :root {
+      --ifsul-verde: #2f9e41;
+      --ifsul-verde-escuro: #1d7a2d;
+      --ifsul-vermelho: #cd191e;
+      --bg: #f4f6f8;
+      --texto: #1f2933;
+      --muted: #6b7c86;
+      --borda: #d9e2e8;
+      --superficie: #ffffff;
+      --codigo-bg: #f7faf9;
+    }
+
+    
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #eef5ef 0%, var(--bg) 220px);
+      color: var(--texto);
+      font-family: 'Open Sans', sans-serif;
+      line-height: 1.7;
+      padding: 32px 16px 48px;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--superficie);
+      border-radius: 16px;
+      box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      border: 1px solid rgba(47, 158, 65, 0.12);
+    }
+
+    .hero {
+      padding: 28px 32px 20px;
+      background:
+        linear-gradient(135deg, rgba(47, 158, 65, 0.14), rgba(29, 122, 45, 0.06)),
+        linear-gradient(180deg, #ffffff, #f7fbf8);
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      color: var(--ifsul-verde-escuro);
+    }
+
+    .hero p {
+      margin: 14px 0 0;
+      color: #41515b;
+      max-width: 70ch;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .meta-card {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    main {
+      padding: 32px;
+    }
+
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
+      color: var(--ifsul-verde-escuro);
+      line-height: 1.25;
+    }
+
+    main h1 { font-size: 2rem; }
+    main h2 {
+      font-size: 1.5rem;
+      margin-top: 2.3rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid rgba(47, 158, 65, 0.18);
+    }
+    main h3 { font-size: 1.2rem; margin-top: 1.8rem; }
+
+    p, ul, ol, table, blockquote, pre {
+      margin: 1rem 0;
+    }
+
+    code, pre code {
+      font-family: 'Fira Code', monospace;
+    }
+
+    code {
+      background: rgba(47, 158, 65, 0.08);
+      color: #14532d;
+      padding: 0.12rem 0.35rem;
+      border-radius: 6px;
+      font-size: 0.92em;
+    }
+
+    pre {
+      background: var(--codigo-bg);
+      border: 1px solid rgba(47, 158, 65, 0.18);
+      border-left: 5px solid var(--ifsul-verde);
+      border-radius: 12px;
+      padding: 16px 18px;
+      overflow-x: auto;
+    }
+
+    blockquote {
+      margin-left: 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--ifsul-verde);
+      background: rgba(47, 158, 65, 0.06);
+      color: #244234;
+      border-radius: 0 12px 12px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--borda);
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background: var(--ifsul-verde);
+      color: white;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borda);
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafcfb;
+    }
+
+    a {
+      color: var(--ifsul-verde-escuro);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 18px 32px 28px;
+      border-top: 1px solid var(--borda);
+      color: var(--muted);
+      font-size: 0.82rem;
+      background: #fbfcfc;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 18px 10px 28px;
+      }
+
+      .hero,
+      main,
+      footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .page {
+        border-radius: 12px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .page {
+        box-shadow: none;
+        border: none;
+      }
+
+      .hero {
+        background: white;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      pre,
+      blockquote,
+      table,
+      img {
+        page-break-inside: avoid;
+      }
+
+      @page {
+        size: A4;
+        margin: 1.8cm;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-top">
+        <span>IFSul - Campus Passo Fundo</span>
+        <span>Ensino Médio Integrado</span>
+      </div>
+      <h1>Programação III</h1>
+      <div class="meta">
+        <div class="meta-card"><strong>Professor</strong>Élder F. F. Bernardi</div>
+        <div class="meta-card"><strong>Curso</strong>Ensino Médio Integrado - Técnico em Informática</div>
+      </div>
+    </section>
+    <main>
+      <h1>Atividade 03: CRUD de Dispositivos — Passo a Passo com <code>fetch()</code></h1>
+<blockquote>
+<p><strong>Programação III</strong> · Prof. Élder F. F. Bernardi · IFSul — Campus Passo Fundo</p>
+<p>Trabalho em dupla · Prazo: 2 aulas · Valor: 1,0 ponto</p>
+</blockquote>
+<hr>
+<h2>Objetivos de Aprendizagem</h2>
+<p>Ao concluir esta atividade, você será capaz de:</p>
+<ul>
+<li>Consumir uma API REST pública usando <code>fetch()</code> com <code>async/await</code>;</li>
+<li>Implementar as quatro operações CRUD (Criar, Ler, Atualizar, Excluir) a partir do navegador;</li>
+<li>Armazenar dados retornados pela API em vetores locais no JavaScript;</li>
+<li>Manipular o DOM (consultar e criar elementos) para renderizar dados na tela;</li>
+<li>Compreender o fluxo completo: <strong>ação do usuário → requisição HTTP → resposta → atualização do vetor local → re-renderização da tela</strong>.</li>
+</ul>
+<hr>
+<h2>Contexto</h2>
+<p>Nas aulas anteriores, vimos que o <code>fetch()</code> é a ferramenta nativa do JavaScript para fazer requisições HTTP a servidores remotos. Nesta atividade, vamos aplicar <strong>todos os verbos CRUD</strong> (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>) contra a API pública <code>https://api.restful-api.dev/objects</code>, que simula um banco de dados de dispositivos eletrônicos.</p>
+<blockquote>
+<p>⚠️ <strong>Atenção:</strong> Esta API é pública e de testes. Ela <strong>não persiste os dados</strong> entre sessões. Isso significa que, se vocês cadastrarem um novo dispositivo, ele existirá apenas enquanto a aba do navegador estiver aberta. Ao recarregar a página, os dados voltam ao estado original da API. Isso é <strong>normal</strong> e esperado — o objetivo da atividade é praticar as requisições, não armazenar dados de verdade.</p>
+</blockquote>
+<p>O fluxo de trabalho será:</p>
+<pre><code>Usuário clica num botão
+    → JavaScript dispara fetch() para a API
+        → API responde com JSON
+            → JavaScript salva/atualiza o vetor local
+                → Função renderizar() redesenha a tabela na tela
+</code></pre>
+<p>Vocês receberão um <strong>boilerplate</strong> (esqueleto) com todo o HTML, CSS e a estrutura do JavaScript já prontos. <strong>O trabalho de vocês é implementar as funções <code>fetch()</code></strong>, seguindo o passo a passo abaixo.</p>
+<hr>
+<h2>Pré-requisito: Repositório Git</h2>
+<p>Antes de começar a programar, vocês <strong>devem</strong> criar um repositório Git para versionar o trabalho. Isso garante que cada passo fique registrado e que vocês possam voltar atrás caso algo dê errado.</p>
+<ol>
+<li>Criem uma pasta para o projeto e inicializem o repositório:<pre><code class="language-bash">mkdir crud-dispositivos
+cd crud-dispositivos
+git init
+</code></pre>
+</li>
+<li>Após criar os três arquivos do boilerplate (próxima seção), façam o <strong>primeiro commit</strong>:<pre><code class="language-bash">git add .
+git commit -m &quot;Boilerplate inicial: HTML, CSS e JS esqueleto&quot;
+</code></pre>
+</li>
+<li><strong>A cada passo concluído e testado</strong>, façam um novo commit descrevendo o que foi implementado. Exemplo:<pre><code class="language-bash">git add .
+git commit -m &quot;Passo 1: implementar renderizar() e listarDispositivos()&quot;
+</code></pre>
+</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>Não deixem para commitar tudo no final.</strong> O histórico de commits faz parte da avaliação e demonstra a evolução do trabalho.</p>
+</blockquote>
+<hr>
+<h2>Preparação</h2>
+<p>Dentro da pasta <code>crud-dispositivos</code> (já inicializada com Git), criem <strong>três arquivos</strong> com o conteúdo indicado a seguir. <strong>Não alterem nada nesta etapa</strong> — apenas copiem e salvem.</p>
+<hr>
+<h3>Arquivo 1: <code>index.html</code></h3>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt-BR&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;CRUD de Dispositivos&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;h1&gt;CRUD de Dispositivos&lt;/h1&gt;
+
+  &lt;!-- ========== FORMULÁRIO ========== --&gt;
+  &lt;section id=&quot;formulario&quot;&gt;
+    &lt;h2&gt;Formulário&lt;/h2&gt;
+
+    &lt;label&gt;ID (para buscar, atualizar ou excluir):&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;campoId&quot; placeholder=&quot;Ex: ff80818...&quot;&gt;
+
+    &lt;label&gt;Nome do dispositivo:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;campoNome&quot; placeholder=&quot;Ex: Galaxy S25&quot;&gt;
+
+    &lt;label&gt;Cor:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;campoCor&quot; placeholder=&quot;Ex: Preto&quot;&gt;
+
+    &lt;label&gt;Capacidade:&lt;/label&gt;
+    &lt;input type=&quot;text&quot; id=&quot;campoCapacidade&quot; placeholder=&quot;Ex: 256 GB&quot;&gt;
+
+    &lt;label&gt;Preço (R$):&lt;/label&gt;
+    &lt;input type=&quot;number&quot; id=&quot;campoPreco&quot; placeholder=&quot;Ex: 1999.90&quot; step=&quot;0.01&quot;&gt;
+
+    &lt;div id=&quot;botoes&quot;&gt;
+      &lt;button id=&quot;btnListar&quot;&gt;Listar Todos&lt;/button&gt;
+      &lt;button id=&quot;btnBuscar&quot;&gt;Buscar por ID&lt;/button&gt;
+      &lt;button id=&quot;btnCadastrar&quot;&gt;Cadastrar&lt;/button&gt;
+      &lt;button id=&quot;btnAtualizar&quot;&gt;Atualizar (PUT)&lt;/button&gt;
+      &lt;button id=&quot;btnExcluir&quot;&gt;Excluir&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;!-- ========== MENSAGEM DE FEEDBACK ========== --&gt;
+  &lt;div id=&quot;mensagem&quot;&gt;&lt;/div&gt;
+
+  &lt;!-- ========== TABELA DE RESULTADOS ========== --&gt;
+  &lt;section id=&quot;listagem&quot;&gt;
+    &lt;h2&gt;Dispositivos&lt;/h2&gt;
+    &lt;table id=&quot;tabela&quot;&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;ID&lt;/th&gt;
+          &lt;th&gt;Nome&lt;/th&gt;
+          &lt;th&gt;Cor&lt;/th&gt;
+          &lt;th&gt;Capacidade&lt;/th&gt;
+          &lt;th&gt;Preço&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody id=&quot;corpoTabela&quot;&gt;
+        &lt;!-- As linhas serão criadas pelo JavaScript --&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/section&gt;
+
+  &lt;script src=&quot;app.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<hr>
+<h3>Arquivo 2: <code>style.css</code></h3>
+<pre><code class="language-css">/* Reset básico para legibilidade */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+h1 {
+  border-bottom: 2px solid #333;
+  padding-bottom: 8px;
+}
+
+/* ---------- Formulário ---------- */
+#formulario label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#formulario input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+#botoes {
+  margin-top: 15px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#botoes button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+}
+
+#btnListar     { background-color: #2196F3; }
+#btnBuscar     { background-color: #607D8B; }
+#btnCadastrar  { background-color: #4CAF50; }
+#btnAtualizar  { background-color: #FF9800; }
+#btnExcluir    { background-color: #f44336; }
+
+/* ---------- Mensagem de feedback ---------- */
+#mensagem {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  display: none;       /* Escondido por padrão */
+}
+
+#mensagem.sucesso {
+  background-color: #dff0d8;
+  border: 1px solid #3c763d;
+  color: #3c763d;
+  display: block;
+}
+
+#mensagem.erro {
+  background-color: #f2dede;
+  border: 1px solid #a94442;
+  color: #a94442;
+  display: block;
+}
+
+/* ---------- Tabela ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f5f5f5;
+}
+
+tr:hover {
+  background-color: #ffffcc;
+}
+</code></pre>
+<hr>
+<h3>Arquivo 3: <code>app.js</code></h3>
+<pre><code class="language-javascript">// ============================================================
+// CONSTANTES
+// ============================================================
+
+// Endereço base da API pública de testes
+const URL_API = &#39;https://api.restful-api.dev/objects&#39;;
+
+// ============================================================
+// VETOR LOCAL (nosso &quot;espelho&quot; dos dados da API)
+// ============================================================
+
+// Este vetor armazena os dispositivos que buscamos da API.
+// Toda vez que fizermos uma operação (listar, cadastrar, etc.),
+// atualizamos este vetor e chamamos renderizar() para redesenhar a tabela.
+let dispositivos = [];
+
+// ============================================================
+// REFERÊNCIAS AO DOM (pegamos os elementos uma única vez)
+// ============================================================
+
+const campoId         = document.getElementById(&#39;campoId&#39;);
+const campoNome       = document.getElementById(&#39;campoNome&#39;);
+const campoCor        = document.getElementById(&#39;campoCor&#39;);
+const campoCapacidade = document.getElementById(&#39;campoCapacidade&#39;);
+const campoPreco      = document.getElementById(&#39;campoPreco&#39;);
+const corpoTabela     = document.getElementById(&#39;corpoTabela&#39;);
+const divMensagem     = document.getElementById(&#39;mensagem&#39;);
+
+// ============================================================
+// FUNÇÕES AUXILIARES (já prontas — não precisam alterar)
+// ============================================================
+
+/**
+ * Exibe uma mensagem de feedback para o usuário.
+ * @param {string} texto - A mensagem a exibir.
+ * @param {string} tipo  - &#39;sucesso&#39; ou &#39;erro&#39;.
+ */
+function mostrarMensagem(texto, tipo) {
+  divMensagem.textContent = texto;
+  divMensagem.className = tipo;  // aplica a classe CSS &#39;sucesso&#39; ou &#39;erro&#39;
+}
+
+/**
+ * Limpa todos os campos do formulário.
+ */
+function limparFormulario() {
+  campoId.value = &#39;&#39;;
+  campoNome.value = &#39;&#39;;
+  campoCor.value = &#39;&#39;;
+  campoCapacidade.value = &#39;&#39;;
+  campoPreco.value = &#39;&#39;;
+}
+
+/**
+ * Renderiza o vetor &#39;dispositivos&#39; na tabela HTML.
+ * Esta função APAGA todas as linhas antigas e recria do zero
+ * a partir do conteúdo atual do vetor.
+ *
+ * &gt;&gt;&gt; VOCÊS VÃO IMPLEMENTAR ESTA FUNÇÃO NO PASSO 1 &lt;&lt;&lt;
+ */
+function renderizar() {
+  // TODO: Passo 1
+}
+
+// ============================================================
+// FUNÇÕES CRUD (vocês vão implementar cada uma)
+// ============================================================
+
+async function listarDispositivos() {
+  alert(&#39;Botão LISTAR clicado!&#39;);
+  // TODO: Passo 1
+}
+
+async function buscarPorId() {
+  alert(&#39;Botão BUSCAR POR ID clicado!&#39;);
+  // TODO: Passo 2
+}
+
+async function cadastrarDispositivo() {
+  alert(&#39;Botão CADASTRAR clicado!&#39;);
+  // TODO: Passo 3
+}
+
+async function atualizarDispositivo() {
+  alert(&#39;Botão ATUALIZAR clicado!&#39;);
+  // TODO: Passo 4
+}
+
+async function excluirDispositivo() {
+  alert(&#39;Botão EXCLUIR clicado!&#39;);
+  // TODO: Passo 5
+}
+
+// ============================================================
+// EVENT LISTENERS (conectam os botões às funções)
+// ============================================================
+
+document.getElementById(&#39;btnListar&#39;).addEventListener(&#39;click&#39;, listarDispositivos);
+document.getElementById(&#39;btnBuscar&#39;).addEventListener(&#39;click&#39;, buscarPorId);
+document.getElementById(&#39;btnCadastrar&#39;).addEventListener(&#39;click&#39;, cadastrarDispositivo);
+document.getElementById(&#39;btnAtualizar&#39;).addEventListener(&#39;click&#39;, atualizarDispositivo);
+document.getElementById(&#39;btnExcluir&#39;).addEventListener(&#39;click&#39;, excluirDispositivo);
+</code></pre>
+<hr>
+<h2>Verificação Inicial</h2>
+<p>Antes de seguir, abram o arquivo <code>index.html</code> no navegador.</p>
+<p>Vocês devem ver:</p>
+<ul>
+<li>O formulário com os campos e os 5 botões coloridos;</li>
+<li>Uma tabela vazia abaixo;</li>
+<li>Ao clicar em qualquer botão, deve aparecer um <strong>alert</strong> indicando qual botão foi pressionado (ex: <code>&quot;Botão LISTAR clicado!&quot;</code>). Isso confirma que os event listeners estão funcionando.</li>
+</ul>
+<p>Se os alerts não aparecem, revisem os três arquivos antes de prosseguir.</p>
+<hr>
+<h2>Passo a Passo</h2>
+<blockquote>
+<p><strong>Dica:</strong> Após implementar cada passo, <strong>testem imediatamente no navegador</strong> antes de seguir para o próximo. Nunca acumulem código sem testar.</p>
+</blockquote>
+<hr>
+<h3>Passo 1 — Listar todos os dispositivos (<code>GET</code>)</h3>
+<p><strong>O que vamos fazer:</strong> Buscar todos os dispositivos da API, salvar no vetor local e renderizar a tabela.</p>
+<p>Neste passo, vamos implementar <strong>duas funções</strong>: <code>renderizar()</code> e <code>listarDispositivos()</code>.</p>
+<h4>1.1 — Implementar a função <code>renderizar()</code></h4>
+<p>Esta é a função mais importante do projeto. Ela é responsável por <strong>ler o vetor <code>dispositivos</code></strong> e <strong>criar as linhas da tabela</strong> no HTML. Será chamada após cada operação.</p>
+<p>Substitua o conteúdo da função <code>renderizar()</code> pelo código abaixo:</p>
+<pre><code class="language-javascript">function renderizar() {
+  // 1. Limpar TODAS as linhas antigas da tabela
+  //    (innerHTML = &#39;&#39; apaga todo o conteúdo interno do &lt;tbody&gt;)
+  corpoTabela.innerHTML = &#39;&#39;;
+
+  // 2. Para cada item do vetor, criar uma linha &lt;tr&gt; na tabela
+  for (let i = 0; i &lt; dispositivos.length; i++) {
+    const item = dispositivos[i];
+
+    // 2a. Criar o elemento &lt;tr&gt; (linha da tabela)
+    const linha = document.createElement(&#39;tr&#39;);
+
+    // 2b. Criar cada célula &lt;td&gt; e preenchê-la
+    const celulaId = document.createElement(&#39;td&#39;);
+    celulaId.textContent = item.id;
+
+    const celulaNome = document.createElement(&#39;td&#39;);
+    celulaNome.textContent = item.name;
+
+    // IMPORTANTE: Antes de acessar propriedades de item.data,
+    // SEMPRE verificamos se item.data existe E se a propriedade existe.
+    // Usamos o operador &amp;&amp; (&quot;e lógico&quot;): a segunda parte só é avaliada
+    // se a primeira for verdadeira. Isso evita o erro:
+    // &quot;Cannot read properties of null&quot;.
+    // Nem todos os objetos da API possuem o campo data preenchido.
+
+    const celulaCor = document.createElement(&#39;td&#39;);
+    if (item.data &amp;&amp; item.data.color) {
+      celulaCor.textContent = item.data.color;
+    } else {
+      celulaCor.textContent = &#39;—&#39;;
+    }
+
+    const celulaCapacidade = document.createElement(&#39;td&#39;);
+    if (item.data &amp;&amp; item.data.capacity) {
+      celulaCapacidade.textContent = item.data.capacity;
+    } else {
+      celulaCapacidade.textContent = &#39;—&#39;;
+    }
+
+    const celulaPreco = document.createElement(&#39;td&#39;);
+    if (item.data &amp;&amp; item.data.price) {
+      // Formatar o preço em reais (R$) com duas casas decimais
+      celulaPreco.textContent = item.data.price.toLocaleString(&#39;pt-BR&#39;, {
+        style: &#39;currency&#39;,
+        currency: &#39;BRL&#39;
+      });
+    } else {
+      celulaPreco.textContent = &#39;—&#39;;
+    }
+
+    // 2c. Anexar as células à linha
+    linha.appendChild(celulaId);
+    linha.appendChild(celulaNome);
+    linha.appendChild(celulaCor);
+    linha.appendChild(celulaCapacidade);
+    linha.appendChild(celulaPreco);
+
+    // 2d. Anexar a linha ao corpo da tabela
+    corpoTabela.appendChild(linha);
+  }
+}
+</code></pre>
+<p><strong>Entendendo o código:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Trecho</th>
+<th align="left">O que faz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>corpoTabela.innerHTML = &#39;&#39;</code></td>
+<td align="left">Limpa a tabela inteira antes de redesenhar. Assim evitamos linhas duplicadas.</td>
+</tr>
+<tr>
+<td align="left"><code>document.createElement(&#39;tr&#39;)</code></td>
+<td align="left">Cria um novo elemento HTML <code>&lt;tr&gt;</code> (linha de tabela) na memória, sem inseri-lo na página ainda.</td>
+</tr>
+<tr>
+<td align="left"><code>document.createElement(&#39;td&#39;)</code></td>
+<td align="left">Cria uma nova célula <code>&lt;td&gt;</code>.</td>
+</tr>
+<tr>
+<td align="left"><code>.textContent = valor</code></td>
+<td align="left">Define o texto visível dentro da célula.</td>
+</tr>
+<tr>
+<td align="left"><code>if (item.data &amp;&amp; item.data.color)</code></td>
+<td align="left"><strong>Verificação em duas etapas:</strong> primeiro verifica se <code>item.data</code> existe, depois se a propriedade <code>color</code> existe. O operador <code>&amp;&amp;</code> garante que a segunda parte só é avaliada se a primeira for verdadeira. Sem isso, acessar <code>null.color</code> causaria um erro fatal. Use <strong>sempre</strong> esse padrão ao acessar propriedades de objetos que podem ser <code>null</code>.</td>
+</tr>
+<tr>
+<td align="left"><code>.toLocaleString(&#39;pt-BR&#39;, {...})</code></td>
+<td align="left">Formata o número como moeda brasileira (R$ 1.999,90). Recebe o idioma (<code>pt-BR</code>) e opções de formatação.</td>
+</tr>
+<tr>
+<td align="left"><code>.appendChild(elemento)</code></td>
+<td align="left">Insere o elemento filho dentro do elemento pai. A ordem dos <code>appendChild</code> define a ordem das colunas.</td>
+</tr>
+</tbody></table>
+<h4>1.2 — Implementar a função <code>listarDispositivos()</code></h4>
+<p>Agora vamos buscar os dados da API e alimentar o vetor. Substitua o conteúdo da função <code>listarDispositivos()</code>:</p>
+<pre><code class="language-javascript">async function listarDispositivos() {
+  try {
+    // 1. Fazer a requisição GET para a API
+    //    (GET é o método padrão do fetch — não precisamos configurar nada)
+    const respostaHTTP = await fetch(URL_API);
+
+    // 2. Converter a resposta HTTP em um objeto JavaScript
+    //    (a API retorna texto JSON, o .json() transforma em objeto/vetor)
+    const dados = await respostaHTTP.json();
+
+    // 3. Salvar os dados no vetor local
+    dispositivos = dados;
+
+    // 4. Redesenhar a tabela com os novos dados
+    renderizar();
+
+    // 5. Informar o usuário
+    mostrarMensagem(dispositivos.length + &#39; dispositivos encontrados.&#39;, &#39;sucesso&#39;);
+
+  } catch (erro) {
+    mostrarMensagem(&#39;Erro ao listar: &#39; + erro.message, &#39;erro&#39;);
+  }
+}
+</code></pre>
+<p><strong>Entendendo o código:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Trecho</th>
+<th align="left">O que faz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>await fetch(URL_API)</code></td>
+<td align="left">Faz uma requisição GET para o endereço da API e <strong>espera</strong> a resposta chegar. A palavra <code>await</code> pausa a execução da função até a rede responder.</td>
+</tr>
+<tr>
+<td align="left"><code>await respostaHTTP.json()</code></td>
+<td align="left">Pega o corpo da resposta HTTP (que é texto JSON) e converte em objetos JavaScript que podemos manipular.</td>
+</tr>
+<tr>
+<td align="left"><code>dispositivos = dados</code></td>
+<td align="left">Substitui todo o vetor local pelo que a API retornou.</td>
+</tr>
+<tr>
+<td align="left"><code>renderizar()</code></td>
+<td align="left">Chama a função que acabamos de criar para redesenhar a tabela.</td>
+</tr>
+</tbody></table>
+<p><strong>Sobre o <code>try / catch</code> — tratamento de erros:</strong></p>
+<p>Quando fazemos uma requisição pela internet, muita coisa pode dar errado: a rede pode cair, o servidor pode estar fora do ar, a URL pode estar errada. Se isso acontecer e não estivermos preparados, o JavaScript simplesmente <strong>para de executar</strong> e o usuário fica sem entender o que houve.</p>
+<p>O <code>try / catch</code> é a estrutura que nos protege desses problemas. Funciona assim:</p>
+<pre><code>try {
+    // &quot;Tente executar este bloco de código.&quot;
+    // Se TUDO der certo, o catch é ignorado.
+}
+catch (erro) {
+    // &quot;Se QUALQUER linha acima falhar, caia aqui.&quot;
+    // A variável &#39;erro&#39; contém uma descrição do problema.
+}
+</code></pre>
+<p><strong>Analogia:</strong> Imagine que você está fazendo uma ligação telefônica (a requisição <code>fetch</code>). O <code>try</code> é a tentativa de fazer a ligação. Se a pessoa atender (servidor responder), tudo flui normalmente. Mas se der sinal de ocupado, a ligação cair ou o número não existir, o <code>catch</code> entra em ação — ele é o seu &quot;plano B&quot; para lidar com a falha sem que o programa trave.</p>
+<p>Na prática, dentro do <code>catch</code>, temos acesso ao objeto <code>erro</code>, que possui a propriedade <code>.message</code> com uma descrição do que deu errado. É esse texto que exibimos ao usuário.</p>
+<blockquote>
+<p>💡 <strong>Experimento:</strong> Para ver o <code>catch</code> funcionando, alterem temporariamente a URL da API para algo inválido (ex: <code>https://api.inexistente.dev/objects</code>), cliquem em &quot;Listar Todos&quot; e observem a mensagem de erro vermelha. Depois, <strong>desfaçam a alteração</strong> para voltar ao normal.</p>
+</blockquote>
+<h4>🧪 Teste agora!</h4>
+<ol>
+<li>Abram o <code>index.html</code> no navegador;</li>
+<li>Cliquem em <strong>&quot;Listar Todos&quot;</strong>;</li>
+<li>A tabela deve ser preenchida com dezenas de dispositivos da API;</li>
+<li>Deve aparecer a mensagem verde com a quantidade de itens encontrados.</li>
+</ol>
+<hr>
+<h3>Passo 2 — Buscar por ID (<code>GET</code> com ID)</h3>
+<p><strong>O que vamos fazer:</strong> Buscar UM dispositivo específico pelo seu ID e preencher o formulário com os dados retornados, para possibilitar edição.</p>
+<p>Substitua o conteúdo da função <code>buscarPorId()</code>:</p>
+<pre><code class="language-javascript">async function buscarPorId() {
+  // 1. Pegar o valor que o usuário digitou no campo ID
+  const id = campoId.value.trim();
+
+  // 2. Validar: se o campo está vazio, avisar e parar
+  if (!id) {
+    mostrarMensagem(&#39;Digite um ID para buscar.&#39;, &#39;erro&#39;);
+    return;   // &quot;return&quot; encerra a função aqui, nada abaixo executa
+  }
+
+  try {
+    // 3. Fazer a requisição GET, agora com o ID na URL
+    //    (Template Literal: o acento grave permite inserir variáveis com ${})
+    const respostaHTTP = await fetch(`${URL_API}/${id}`);
+
+    // 4. Verificar se a API encontrou o objeto
+    if (!respostaHTTP.ok) {
+      mostrarMensagem(&#39;Dispositivo não encontrado (ID: &#39; + id + &#39;).&#39;, &#39;erro&#39;);
+      return;
+    }
+
+    // 5. Converter a resposta em objeto JavaScript
+    const item = await respostaHTTP.json();
+
+    // 6. Preencher o formulário com os dados retornados
+    //    (isso facilita a edição — o aluno vê os dados atuais e altera o que quiser)
+    if (item.name) {
+      campoNome.value = item.name;
+    } else {
+      campoNome.value = &#39;&#39;;
+    }
+
+    if (item.data &amp;&amp; item.data.color) {
+      campoCor.value = item.data.color;
+    } else {
+      campoCor.value = &#39;&#39;;
+    }
+
+    if (item.data &amp;&amp; item.data.capacity) {
+      campoCapacidade.value = item.data.capacity;
+    } else {
+      campoCapacidade.value = &#39;&#39;;
+    }
+
+    if (item.data &amp;&amp; item.data.price) {
+      campoPreco.value = item.data.price;
+    } else {
+      campoPreco.value = &#39;&#39;;
+    }
+
+    // 7. Atualizar o vetor local: colocar somente este item para visualização
+    dispositivos = [item];
+    renderizar();
+
+    mostrarMensagem(&#39;Dispositivo &quot;&#39; + item.name + &#39;&quot; encontrado.&#39;, &#39;sucesso&#39;);
+
+  } catch (erro) {
+    mostrarMensagem(&#39;Erro ao buscar: &#39; + erro.message, &#39;erro&#39;);
+  }
+}
+</code></pre>
+<p><strong>Entendendo o código:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Trecho</th>
+<th align="left">O que faz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>.trim()</code></td>
+<td align="left">Remove espaços em branco antes e depois do texto digitado.</td>
+</tr>
+<tr>
+<td align="left"><code>`${URL_API}/${id}`</code></td>
+<td align="left">Monta a URL com o ID. Exemplo: <code>https://api.restful-api.dev/objects/3</code>. O <strong>acento grave</strong> (`) permite inserir variáveis com <code>${}</code> (Template Literal).</td>
+</tr>
+<tr>
+<td align="left"><code>respostaHTTP.ok</code></td>
+<td align="left">Propriedade booleana: <code>true</code> se o status HTTP é 200–299 (sucesso), <code>false</code> se é 404, 500 etc.</td>
+</tr>
+<tr>
+<td align="left"><code>return</code></td>
+<td align="left">Para a execução da função imediatamente. Nenhum código abaixo do <code>return</code> é executado.</td>
+</tr>
+<tr>
+<td align="left"><code>if (item.data &amp;&amp; item.data.color)</code></td>
+<td align="left">Verifica se <code>data</code> existe antes de acessar <code>color</code>. Evita erro &quot;Cannot read properties of null&quot;.</td>
+</tr>
+<tr>
+<td align="left"><code>dispositivos = [item]</code></td>
+<td align="left">Coloca apenas o item buscado no vetor (os colchetes criam um vetor com um único elemento).</td>
+</tr>
+</tbody></table>
+<h4>🧪 Teste agora!</h4>
+<ol>
+<li>Cliquem em <strong>&quot;Listar Todos&quot;</strong> primeiro;</li>
+<li>Copiem o ID de qualquer dispositivo da tabela;</li>
+<li>Colem no campo <strong>ID</strong> e cliquem em <strong>&quot;Buscar por ID&quot;</strong>;</li>
+<li>O formulário deve ser preenchido com os dados do dispositivo;</li>
+<li>A tabela deve mostrar somente aquele item;</li>
+<li>Testem com um ID inexistente (ex: <code>abc123</code>) — deve aparecer mensagem de erro.</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Observação:</strong> Ao buscar por ID, o vetor local é substituído por um vetor com apenas aquele item (<code>dispositivos = [item]</code>). Isso significa que a tabela passa a mostrar <strong>somente</strong> o dispositivo buscado. Para voltar a ver todos, cliquem novamente em <strong>&quot;Listar Todos&quot;</strong>.</p>
+</blockquote>
+<hr>
+<h3>Passo 3 — Cadastrar um novo dispositivo (<code>POST</code>)</h3>
+<p><strong>O que vamos fazer:</strong> Ler os dados digitados no formulário, montar um objeto JavaScript, enviar para a API via <code>POST</code> e adicionar o item retornado ao vetor local.</p>
+<p>Substitua o conteúdo da função <code>cadastrarDispositivo()</code>:</p>
+<pre><code class="language-javascript">async function cadastrarDispositivo() {
+  // 1. Ler os valores dos campos do formulário
+  const nome = campoNome.value.trim();
+  const cor = campoCor.value.trim();
+  const capacidade = campoCapacidade.value.trim();
+  const preco = campoPreco.value;
+
+  // 2. Validação mínima: nome é obrigatório
+  if (!nome) {
+    mostrarMensagem(&#39;O nome do dispositivo é obrigatório.&#39;, &#39;erro&#39;);
+    return;
+  }
+
+  // 3. Montar o objeto no formato que a API espera
+  //    (consulte a documentação da API para saber o formato)
+  // parseFloat() converte texto para número decimal.
+  // Se o campo estiver vazio, parseFloat(&#39;&#39;) retorna NaN (Not a Number).
+  // Usamos o operador || para substituir NaN por 0.
+  const precoNumerico = parseFloat(preco) || 0;
+
+  const novoDispositivo = {
+    name: nome,
+    data: {
+      color: cor,
+      capacity: capacidade,
+      price: precoNumerico
+    }
+  };
+
+  try {
+    // 4. Fazer a requisição POST
+    //    Diferente do GET, aqui precisamos configurar:
+    //    - method: qual verbo HTTP usar
+    //    - headers: avisar que estamos enviando JSON
+    //    - body: os dados convertidos de objeto JS para texto JSON
+    const respostaHTTP = await fetch(URL_API, {
+      method: &#39;POST&#39;,
+      headers: {
+        &#39;Content-Type&#39;: &#39;application/json&#39;
+      },
+      body: JSON.stringify(novoDispositivo)
+    });
+
+    // 5. Verificar se a resposta foi bem-sucedida
+    if (!respostaHTTP.ok) {
+      mostrarMensagem(&#39;Erro ao cadastrar. A API retornou status &#39; + respostaHTTP.status + &#39;.&#39;, &#39;erro&#39;);
+      return;
+    }
+
+    // 6. Converter a resposta (a API retorna o objeto criado, agora com um ID)
+    const itemCriado = await respostaHTTP.json();
+
+    // 6. Adicionar o novo item ao vetor local
+    dispositivos.push(itemCriado);
+
+    // 7. Redesenhar a tabela para mostrar o novo item
+    renderizar();
+
+    // 8. Limpar o formulário e informar o usuário
+    limparFormulario();
+    mostrarMensagem(&#39;Dispositivo &quot;&#39; + itemCriado.name + &#39;&quot; cadastrado! ID: &#39; + itemCriado.id, &#39;sucesso&#39;);
+
+  } catch (erro) {
+    mostrarMensagem(&#39;Erro ao cadastrar: &#39; + erro.message, &#39;erro&#39;);
+  }
+}
+</code></pre>
+<p><strong>Entendendo o código — as partes novas:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Trecho</th>
+<th align="left">O que faz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>method: &#39;POST&#39;</code></td>
+<td align="left">Indica ao <code>fetch()</code> que não é uma leitura (GET), mas sim o envio de dados novos. Cada verbo HTTP tem uma semântica: POST = criar.</td>
+</tr>
+<tr>
+<td align="left"><code>headers: { &#39;Content-Type&#39;: &#39;application/json&#39; }</code></td>
+<td align="left">Informa ao servidor o <strong>formato</strong> do conteúdo que estamos enviando. Sem esse cabeçalho, o servidor pode rejeitar a requisição.</td>
+</tr>
+<tr>
+<td align="left"><code>JSON.stringify(novoDispositivo)</code></td>
+<td align="left">Converte o objeto JavaScript em <strong>texto JSON</strong> (string). A rede transporta texto, não objetos. <code>body</code> precisa ser uma string.</td>
+</tr>
+<tr>
+<td align="left"><code>parseFloat(preco) || 0</code></td>
+<td align="left">Converte o texto do campo preço em número decimal. Se o campo estiver vazio, <code>parseFloat(&#39;&#39;)</code> retorna <code>NaN</code> (Not a Number). O operador <code>||</code> substitui <code>NaN</code> por <code>0</code>, evitando dados inválidos.</td>
+</tr>
+<tr>
+<td align="left"><code>respostaHTTP.ok</code></td>
+<td align="left">Verifica se a resposta HTTP foi bem-sucedida (status 200–299). Sempre faça essa verificação antes de processar a resposta — se o servidor retornar erro, o <code>.json()</code> pode falhar ou retornar dados inesperados.</td>
+</tr>
+<tr>
+<td align="left"><code>dispositivos.push(itemCriado)</code></td>
+<td align="left">Adiciona o novo item ao <strong>final</strong> do vetor local. O método <code>.push()</code> não substitui — ele acrescenta.</td>
+</tr>
+<tr>
+<td align="left"><code>limparFormulario()</code></td>
+<td align="left">Chama a função auxiliar que já estava pronta para zerar os campos.</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Retomando a manipulação do DOM:</strong>  Observe que no Passo 1 já usamos <code>document.createElement()</code> e <code>.appendChild()</code> para criar elementos na página dinamicamente, e <code>document.getElementById()</code> para buscar elementos existentes. Essas são as duas operações fundamentais de manipulação do DOM:</p>
+<ul>
+<li><strong>Consultar</strong> (query): <code>getElementById()</code>, <code>querySelector()</code>, <code>querySelectorAll()</code> — encontrar elementos que já existem na página;</li>
+<li><strong>Criar</strong>: <code>createElement()</code>, <code>.textContent</code>, <code>.appendChild()</code> — fabricar elementos novos e inseri-los na página.</li>
+</ul>
+<p>Toda a integração frontend–API gira em torno disso: buscamos os dados via <code>fetch()</code>, salvamos no vetor e então usamos essas operações do DOM para exibir os dados na tela.</p>
+</blockquote>
+<h4>🧪 Teste agora!</h4>
+<ol>
+<li>Preencham os campos: Nome = <code>Monitor LG 24&quot;</code>, Cor = <code>Preto</code>, Capacidade = deixem vazio, Preço = <code>899.90</code>;</li>
+<li>Cliquem em <strong>&quot;Cadastrar&quot;</strong>;</li>
+<li>Deve aparecer uma mensagem verde com o ID gerado pela API;</li>
+<li>O novo item deve aparecer na tabela;</li>
+<li>O formulário deve ser limpo automaticamente;</li>
+<li><strong>Anotem o ID</strong> gerado — vocês vão precisar dele nos próximos passos!</li>
+</ol>
+<hr>
+<h3>Passo 4 — Atualizar um dispositivo (<code>PUT</code>) — ⚡ Desafio!</h3>
+<p><strong>O que vocês vão fazer:</strong> Implementar a função <code>atualizarDispositivo()</code> <strong>por conta própria</strong>, aplicando o que aprenderam nos passos anteriores.</p>
+<blockquote>
+<p>🎯 Este passo <strong>não tem código pronto</strong>. Vocês já possuem todas as ferramentas necessárias — usem os Passos 2 e 3 como referência.</p>
+</blockquote>
+<h4>O que a função precisa fazer (checklist):</h4>
+<ol>
+<li><strong>Ler o ID</strong> do campo <code>campoId</code> e validar se está preenchido (como no Passo 2);</li>
+<li><strong>Ler os demais campos</strong> e validar que o nome está preenchido (como no Passo 3);</li>
+<li><strong>Montar um objeto</strong> com os novos dados lidos do formulário — campos <code>name</code>, <code>color</code>, <code>capacity</code>, <code>price</code> (como no Passo 3). Lembre-se de converter o preço com <code>parseFloat() || 0</code>;</li>
+<li><strong>Fazer a requisição <code>fetch()</code></strong> com as seguintes configurações:<ul>
+<li>URL: <code>`${URL_API}/${id}`</code> (<strong>com o ID na URL!</strong> — diferente do POST)</li>
+<li><code>method: &#39;PUT&#39;</code></li>
+<li><code>headers</code> com <code>Content-Type: application/json</code></li>
+<li><code>body</code> com o objeto convertido para texto JSON</li>
+</ul>
+</li>
+<li><strong>Verificar se a resposta foi bem-sucedida</strong> com <code>respostaHTTP.ok</code> (como no Passo 2);</li>
+<li><strong>Converter a resposta</strong> com <code>.json()</code>;</li>
+<li><strong>Atualizar o vetor local</strong> — encontrar o item com o mesmo ID e substituí-lo. Use <code>findIndex()</code> para isso:<pre><code class="language-javascript">// findIndex() percorre o vetor e retorna a POSIÇÃO (0, 1, 2...)
+// do primeiro item que satisfaz a condição.
+// Se não encontrar, retorna -1.
+const posicao = dispositivos.findIndex(d =&gt; d.id === id);
+
+if (posicao !== -1) {
+  // Substituir o item antigo pelo atualizado
+  dispositivos[posicao] = itemAtualizado;
+}
+</code></pre>
+</li>
+<li><strong>Chamar <code>renderizar()</code></strong> para redesenhar a tabela;</li>
+<li><strong>Exibir mensagem de sucesso</strong> com <code>mostrarMensagem()</code>.</li>
+</ol>
+<h4>Diferenças importantes em relação ao <code>POST</code>:</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Aspecto</th>
+<th align="left">POST (Cadastrar)</th>
+<th align="left">PUT (Atualizar)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>URL</strong></td>
+<td align="left"><code>URL_API</code> (sem ID)</td>
+<td align="left"><code>`${URL_API}/${id}`</code> (com ID!)</td>
+</tr>
+<tr>
+<td align="left"><strong>method</strong></td>
+<td align="left"><code>&#39;POST&#39;</code></td>
+<td align="left"><code>&#39;PUT&#39;</code></td>
+</tr>
+<tr>
+<td align="left"><strong>Vetor local</strong></td>
+<td align="left"><code>.push()</code> (adiciona ao final)</td>
+<td align="left">Encontrar a posição do item e substituí-lo</td>
+</tr>
+</tbody></table>
+<h4>🧪 Teste quando terminar!</h4>
+<ol>
+<li>Cadastrem um novo dispositivo (Passo 3) e anotem o ID;</li>
+<li>Cliquem em <strong>&quot;Buscar por ID&quot;</strong> com esse ID — o formulário será preenchido;</li>
+<li>Alterem o Nome para algo diferente;</li>
+<li>Cliquem em <strong>&quot;Atualizar (PUT)&quot;</strong>;</li>
+<li>A tabela deve mostrar o nome atualizado;</li>
+<li>Deve aparecer a mensagem verde de sucesso.</li>
+</ol>
+<blockquote>
+<p>Se não funcionar, comparem a estrutura da função com a do <code>cadastrarDispositivo()</code> — a lógica é muito semelhante, mas com <code>method: &#39;PUT&#39;</code> e o ID na URL.</p>
+</blockquote>
+<hr>
+<h3>Passo 5 — Excluir um dispositivo (<code>DELETE</code>) — ⚡ Desafio!</h3>
+<p><strong>O que vocês vão fazer:</strong> Implementar a função <code>excluirDispositivo()</code> <strong>por conta própria</strong>.</p>
+<blockquote>
+<p>🎯 Assim como o Passo 4, este passo <strong>não tem código pronto</strong>. Usem os passos anteriores como referência.</p>
+</blockquote>
+<h4>O que a função precisa fazer (checklist):</h4>
+<ol>
+<li><strong>Ler o ID</strong> do campo <code>campoId</code> e validar se está preenchido;</li>
+<li><strong>Confirmar com o usuário</strong> antes de excluir (usar <code>confirm()</code> — veja dica abaixo);</li>
+<li><strong>Fazer a requisição <code>fetch()</code></strong> com as seguintes configurações:<ul>
+<li><code>method: &#39;DELETE&#39;</code></li>
+<li>URL com o ID (igual ao PUT): <code>`${URL_API}/${id}`</code></li>
+<li><strong>Sem <code>headers</code></strong> e <strong>sem <code>body</code></strong> — DELETE não envia dados, apenas indica o alvo pela URL</li>
+</ul>
+</li>
+<li><strong>Verificar se a resposta foi bem-sucedida</strong> com <code>respostaHTTP.ok</code> (boa prática — como nos passos anteriores);</li>
+<li><strong>Remover o item do vetor local</strong> usando <code>filter()</code> (veja dica abaixo);</li>
+<li><strong>Chamar <code>renderizar()</code></strong> para redesenhar a tabela;</li>
+<li><strong>Limpar o formulário</strong> e <strong>exibir mensagem de sucesso</strong>.</li>
+</ol>
+<h4>Diferenças em relação ao <code>PUT</code>:</h4>
+<table>
+<thead>
+<tr>
+<th align="left">Aspecto</th>
+<th align="left">PUT (Atualizar)</th>
+<th align="left">DELETE (Excluir)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>method</strong></td>
+<td align="left"><code>&#39;PUT&#39;</code></td>
+<td align="left"><code>&#39;DELETE&#39;</code></td>
+</tr>
+<tr>
+<td align="left"><strong>headers</strong></td>
+<td align="left">Sim (<code>Content-Type</code>)</td>
+<td align="left">Não precisa</td>
+</tr>
+<tr>
+<td align="left"><strong>body</strong></td>
+<td align="left">Sim (dados atualizados)</td>
+<td align="left">Não precisa</td>
+</tr>
+<tr>
+<td align="left"><strong>Vetor local</strong></td>
+<td align="left">Encontrar e <strong>substituir</strong> o item</td>
+<td align="left">Encontrar e <strong>remover</strong> o item</td>
+</tr>
+</tbody></table>
+<h4>Dicas úteis</h4>
+<p><strong>Pedir confirmação ao usuário:</strong></p>
+<pre><code class="language-javascript">// confirm() abre uma caixa de diálogo nativa do navegador.
+// Retorna true se o usuário clicar &quot;OK&quot;, false se clicar &quot;Cancelar&quot;.
+const confirmou = confirm(&#39;Tem certeza que deseja excluir?&#39;);
+if (!confirmou) {
+  return;   // Usuário cancelou — encerra a função sem fazer nada
+}
+</code></pre>
+<p><strong>Remover um item do vetor com <code>filter()</code>:</strong></p>
+<pre><code class="language-javascript">// filter() cria um NOVO vetor contendo apenas os itens
+// que satisfazem a condição. Os que NÃO satisfazem ficam de fora.
+// Ou seja: &quot;me dê todos os itens que NÃO têm este id&quot;.
+dispositivos = dispositivos.filter(d =&gt; d.id !== id);
+</code></pre>
+<h4>🧪 Teste quando terminar!</h4>
+<ol>
+<li>Cadastrem um dispositivo novo e anotem o ID;</li>
+<li>Digitem o ID no campo e cliquem em <strong>&quot;Excluir&quot;</strong>;</li>
+<li>Uma caixa de confirmação deve aparecer — cliquem <strong>OK</strong>;</li>
+<li>O item deve desaparecer da tabela;</li>
+<li>Deve aparecer a mensagem verde de sucesso.</li>
+</ol>
+<hr>
+<h3>Passo 6 (Bônus) — Clicar na linha para preencher o formulário</h3>
+<blockquote>
+<p>🎁 Este passo <strong>não é obrigatório</strong>, mas resolve um problema prático: copiar IDs longos da tabela é chato! Ao clicar numa linha, o formulário será preenchido automaticamente.</p>
+</blockquote>
+<p><strong>O que vamos fazer:</strong> Adicionar um <code>addEventListener(&#39;click&#39;, ...)</code> em cada <code>&lt;tr&gt;</code> criada pela função <code>renderizar()</code>, para que ao clicar na linha, os dados daquele dispositivo preencham o formulário.</p>
+<p>Adicionem o trecho abaixo <strong>dentro</strong> da função <code>renderizar()</code>, logo <strong>antes</strong> do <code>corpoTabela.appendChild(linha)</code> (ou seja, antes de inserir a linha na tabela):</p>
+<pre><code class="language-javascript">    // 2e. (BÔNUS) Ao clicar na linha, preencher o formulário com os dados
+    linha.style.cursor = &#39;pointer&#39;;  // muda o cursor para indicar que é clicável
+    linha.addEventListener(&#39;click&#39;, function() {
+      campoId.value = item.id;
+      campoNome.value = item.name || &#39;&#39;;
+      campoCor.value = (item.data &amp;&amp; item.data.color) ? item.data.color : &#39;&#39;;
+      campoCapacidade.value = (item.data &amp;&amp; item.data.capacity) ? item.data.capacity : &#39;&#39;;
+      campoPreco.value = (item.data &amp;&amp; item.data.price) ? item.data.price : &#39;&#39;;
+    });
+</code></pre>
+<p><strong>Entendendo o código:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">Trecho</th>
+<th align="left">O que faz</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>linha.style.cursor = &#39;pointer&#39;</code></td>
+<td align="left">Muda o cursor do mouse para a &quot;mãozinha&quot; ao passar sobre a linha, indicando visualmente que ela é clicável.</td>
+</tr>
+<tr>
+<td align="left"><code>linha.addEventListener(&#39;click&#39;, function() {...})</code></td>
+<td align="left">Registra uma função que será executada quando o usuário clicar naquela linha específica.</td>
+</tr>
+<tr>
+<td align="left"><code>(item.data &amp;&amp; item.data.color) ? item.data.color : &#39;&#39;</code></td>
+<td align="left">Operador ternário: se <code>item.data</code> e <code>item.data.color</code> existirem, usa o valor; senão, usa string vazia. É a versão compacta do <code>if/else</code>.</td>
+</tr>
+</tbody></table>
+<h4>🧪 Teste!</h4>
+<ol>
+<li>Cliquem em <strong>&quot;Listar Todos&quot;</strong>;</li>
+<li>Cliquem em qualquer linha da tabela;</li>
+<li>O formulário deve ser preenchido automaticamente com os dados daquela linha;</li>
+<li>Agora vocês podem editar e clicar em <strong>&quot;Atualizar&quot;</strong> ou <strong>&quot;Excluir&quot;</strong> sem precisar copiar o ID manualmente!</li>
+</ol>
+<hr>
+<h2>Resumo: O Fluxo Completo</h2>
+<p>Ao final dos passos, vocês construíram uma aplicação que segue este ciclo:</p>
+<pre><code>┌──────────────────────────────────────────────────────────┐
+│  USUÁRIO clica num botão                                 │
+│      ↓                                                   │
+│  JavaScript LÊ os campos do formulário                   │
+│      ↓                                                   │
+│  fetch() ENVIA a requisição HTTP para a API              │
+│      ↓                                                   │
+│  API PROCESSA e retorna uma RESPOSTA (JSON)              │
+│      ↓                                                   │
+│  JavaScript ATUALIZA o vetor local (dispositivos)        │
+│      ↓                                                   │
+│  renderizar() REDESENHA a tabela no HTML                 │
+│      ↓                                                   │
+│  mostrarMensagem() INFORMA o resultado ao usuário        │
+└──────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>Perguntas Frequentes</h2>
+<p><strong>&quot;Cadastrei um dispositivo, mas ao recarregar a página ele sumiu!&quot;</strong>
+Isso é normal. O vetor <code>dispositivos</code> fica na <strong>memória do navegador</strong> (RAM). Ao recarregar a página, o JavaScript reinicia do zero e o vetor começa vazio. Além disso, a API de teste não persiste dados — ela é reiniciada periodicamente. Em aplicações reais, os dados ficam salvos num banco de dados no servidor.</p>
+<p><strong>&quot;Busquei por ID e agora só vejo 1 dispositivo na tabela. Cadê os outros?&quot;</strong>
+Ao buscar por ID, substituímos o vetor inteiro por <code>dispositivos = [item]</code> (um vetor com só aquele item). Para ver todos novamente, clique em <strong>&quot;Listar Todos&quot;</strong>.</p>
+<p><strong>&quot;O preço apareceu como NaN na tabela.&quot;</strong>
+Isso acontece quando o campo preço está vazio ou contém texto inválido. A função <code>parseFloat(&#39;&#39;)</code> retorna <code>NaN</code>. Por isso usamos <code>parseFloat(preco) || 0</code> — o operador <code>||</code> substitui <code>NaN</code> por <code>0</code>.</p>
+<hr>
+<h2>Critérios de Avaliação (1,0 ponto)</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Critério</th>
+<th align="center">Peso</th>
+<th align="left">Excelente</th>
+<th align="left">Insuficiente</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Listar funciona (<code>GET</code>) + <code>renderizar()</code></td>
+<td align="center">0,2</td>
+<td align="left">Tabela populada corretamente, função <code>renderizar()</code> operacional</td>
+<td align="left">Função não implementada ou com erros</td>
+</tr>
+<tr>
+<td align="left">Buscar + Cadastrar (<code>GET</code> por ID + <code>POST</code>)</td>
+<td align="center">0,2</td>
+<td align="left">Busca preenche formulário, cadastro adiciona item à tabela</td>
+<td align="left">Funções não implementadas ou com erros</td>
+</tr>
+<tr>
+<td align="left"><strong>Atualizar funciona (<code>PUT</code>) — autônomo</strong></td>
+<td align="center">0,25</td>
+<td align="left">Implementado corretamente sem código fornecido; dados atualizados no servidor e na tabela</td>
+<td align="left">PUT não funciona ou apenas copiou código de outro passo sem adaptar</td>
+</tr>
+<tr>
+<td align="left"><strong>Excluir funciona (<code>DELETE</code>) — autônomo</strong></td>
+<td align="center">0,25</td>
+<td align="left">Implementado corretamente sem código fornecido; item removido com confirmação</td>
+<td align="left">DELETE não funciona ou a tabela não atualiza</td>
+</tr>
+<tr>
+<td align="left">Organização e Git</td>
+<td align="center">0,1</td>
+<td align="left">Código em 3 arquivos, histórico de commits por passo</td>
+<td align="left">Arquivo único, sem commits ou commit único no final</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Desafio Extra (+0,2 bônus)</h2>
+<p>Se terminarem antes do tempo, cada item implementado corretamente vale <strong>+0,1</strong> (máximo +0,2):</p>
+<ol>
+<li>Adicionar um botão <strong>&quot;Limpar&quot;</strong> que zera o formulário e relista todos os dispositivos;</li>
+<li>Desabilitar os botões durante a requisição (para evitar cliques duplos) e reabilitá-los quando a resposta chegar;</li>
+<li>Adicionar uma animação de carregamento (<em>spinner</em>) enquanto espera a resposta da API.</li>
+</ol>
+<hr>
+<small>
+
+<p><em>Material produzido com auxílio de IA generativa, sob supervisão e curadoria do professor. Conteúdo revisado quanto à correção técnica e adequação pedagógica.</em></p>
+</small>
+
+    </main>
+    <footer>
+      <span>IFSul - Campus Passo Fundo · Programação III</span>
+    </footer>
+  </div>
+</body>
+</html>
