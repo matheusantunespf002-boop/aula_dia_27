@@ -279,8 +279,81 @@ async function cadastrarDispositivo() {
 }
 
 async function atualizarDispositivo() {
-  alert('Botão ATUALIZAR clicado!');
-  // TODO: Passo 4
+async function atualizarDispositivo() {
+  const id = campoId.value.trim();
+  const nome = campoNome.value.trim();
+  const cor = campoCor.value.trim();
+  const capacidade = campoCapacidade.value.trim();
+  const preco = campoPreco.value;
+
+
+  if (!nome) {
+    mostrarMensagem('O nome do dispositivo é obrigatório.', 'erro');
+    return;
+
+  }
+
+
+  const precoNumerico = parseFloat(preco) || 0;
+
+  const atualizaDispositivo = {
+    name: nome,
+    data: {
+      color: cor,
+      capacity: capacidade,
+      price: precoNumerico
+    }
+
+  };
+
+
+  try {
+    // 4. Fazer a requisição POST
+    // Diferente do GET, aqui precisamos configurar:
+    // - method: qual verbo HTTP usar
+    // - headers: avisar que estamos enviando JSON
+    // - body: os dados convertidos de objeto JS para texto JSON
+
+    const respostaHTTP = await  fetch(`${URL_API}/${id}`, {
+      method: 'PUT',
+     headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(atualizaDispositivo)
+    });
+
+    if (!respostaHTTP.ok) {
+      mostrarMensagem('Dispositivo não encontrado (ID: ' + id + ').');
+      return;
+    }
+
+  }catch(erro){
+    mostrarMensagem('Erro ao atualizar: ' + erro.message, 'erro');
+    return;
+  }
+
+const item1 = await respostaHTTP.json();
+
+
+  // findIndex() percorre o vetor e retorna a POSIÇÃO (0, 1, 2...)
+
+  // do primeiro item que satisfaz a condição.
+
+  // Se não encontrar, retorna -1.
+
+
+  const posicao = dispositivos.findIndex(d => d.id === id);
+  if (posicao !== -1) {
+
+    // Substituir o item antigo pelo atualizado
+    dispositivos[posicao] = itemAtualizado;
+
+  }
+
+  renderizar()
+  mostrarMensagem("atualizado com sucesso")
+}
+
 }
 
 async function excluirDispositivo() {
